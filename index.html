@@ -1,0 +1,2737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Misstu Pro | Misstu Hacker</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+
+    background:#05070a;
+
+    color:#ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    z-index:-10;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0,255,160,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(0,140,255,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(140,0,255,.12),
+            transparent 32%
+        ),
+        #05070a;
+}
+
+body::after{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    z-index:-8;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.012) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.012) 1px,
+            transparent 1px
+        );
+
+    background-size:50px 50px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent
+        );
+}
+
+/* =========================================================
+   GLOWING ORBS
+========================================================= */
+
+.aurora{
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-7;
+}
+
+.orb{
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    opacity:.25;
+
+    animation:
+        orbFloat 12s ease-in-out infinite alternate;
+}
+
+.orb.one{
+    width:330px;
+    height:330px;
+
+    left:-140px;
+    top:8%;
+
+    background:#00ff99;
+}
+
+.orb.two{
+    width:320px;
+    height:320px;
+
+    right:-130px;
+    top:25%;
+
+    background:#0088ff;
+
+    animation-delay:2s;
+}
+
+.orb.three{
+    width:300px;
+    height:300px;
+
+    left:40%;
+    bottom:-150px;
+
+    background:#8a2be2;
+
+    animation-delay:4s;
+}
+
+@keyframes orbFloat{
+
+    0%{
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(45px,-35px)
+            scale(1.1);
+    }
+
+    100%{
+        transform:
+            translate(-30px,40px)
+            scale(.95);
+    }
+}
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+.cursor{
+    position:fixed;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    transform:
+        translate(-50%,-50%);
+
+    box-shadow:
+        0 0 10px #00ff99,
+        0 0 25px #00ff99;
+}
+
+.cursor-follower{
+    position:fixed;
+
+    width:38px;
+    height:38px;
+
+    border:
+        1px solid
+        rgba(0,255,160,.5);
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99998;
+
+    transform:
+        translate(-50%,-50%);
+
+    transition:
+        left .15s ease,
+        top .15s ease,
+        transform .25s ease;
+}
+
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
+
+.welcome-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,255,150,.10),
+            transparent 38%
+        ),
+        rgba(2,4,7,.97);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:
+        opacity 1.2s ease;
+}
+
+.welcome-content{
+
+    width:
+        min(700px,100%);
+
+    padding:
+        55px 35px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.55),
+
+        inset 0 1px 0
+        rgba(255,255,255,.12);
+}
+
+.welcome-content::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    left:-130px;
+    top:-130px;
+
+    border-radius:50%;
+
+    background:#00ff99;
+
+    filter:blur(100px);
+
+    opacity:.15;
+}
+
+.welcome-content::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:-130px;
+    bottom:-130px;
+
+    border-radius:50%;
+
+    background:#0077ff;
+
+    filter:blur(100px);
+
+    opacity:.15;
+}
+
+.welcome-title{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:
+        clamp(2rem,8vw,4rem);
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 0 20px
+        rgba(0,255,160,.7);
+
+    opacity:0;
+
+    transform:
+        translateY(-30px);
+
+    animation:
+        welcomeGlow 3s
+        infinite alternate;
+}
+
+.welcome-subtitle{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:
+        clamp(1rem,4vw,1.5rem);
+
+    color:#72ffd0;
+
+    margin-bottom:20px;
+
+    opacity:0;
+
+    transform:
+        translateY(20px);
+}
+
+.welcome-text{
+
+    position:relative;
+
+    z-index:2;
+
+    color:
+        rgba(255,255,255,.68);
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+    opacity:0;
+}
+
+.enter-btn{
+
+    position:relative;
+
+    z-index:2;
+
+    padding:
+        15px 32px;
+
+    border:
+        1px solid
+        rgba(0,255,160,.65);
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,255,160,.15),
+            rgba(0,150,255,.08)
+        );
+
+    color:#ffffff;
+
+    font-size:1rem;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,255,160,.12),
+
+        inset 0 1px 0
+        rgba(255,255,255,.15);
+
+    backdrop-filter:blur(15px);
+
+    transition:.35s;
+
+    opacity:0;
+
+    transform:scale(.85);
+}
+
+.enter-btn:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    border-color:#00ffae;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,255,160,.25),
+
+        0 0 30px
+        rgba(0,255,160,.12);
+}
+
+@keyframes welcomeGlow{
+
+    from{
+        text-shadow:
+            0 0 10px
+            rgba(0,255,150,.3);
+    }
+
+    to{
+        text-shadow:
+            0 0 20px
+            rgba(0,255,150,.8),
+
+            0 0 50px
+            rgba(0,255,150,.25);
+    }
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content{
+
+    display:none;
+
+    opacity:0;
+
+    position:relative;
+
+    transition:
+        opacity 1.2s ease;
+}
+
+/* =========================================================
+   MATRIX
+========================================================= */
+
+.matrix-bg{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-6;
+
+    opacity:.12;
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   BINARY RAIN
+========================================================= */
+
+.binary-rain{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-5;
+
+    pointer-events:none;
+
+    overflow:hidden;
+}
+
+.binary-digit{
+
+    position:absolute;
+
+    color:
+        rgba(0,255,150,.3);
+
+    font-size:12px;
+
+    animation:
+        fall linear forwards;
+}
+
+@keyframes fall{
+
+    from{
+        transform:
+            translateY(-30px);
+    }
+
+    to{
+        transform:
+            translateY(110vh);
+    }
+}
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-4;
+
+    pointer-events:none;
+}
+
+.particle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:#00ff99;
+
+    box-shadow:
+        0 0 10px #00ff99;
+
+    animation:
+        particleFloat
+        linear
+        forwards;
+}
+
+@keyframes particleFloat{
+
+    to{
+        transform:
+            translateY(-100px);
+
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    text-align:center;
+
+    padding:
+        90px 20px 50px;
+
+    opacity:0;
+
+    transform:
+        translateY(-30px);
+}
+
+.header-title{
+
+    display:inline-block;
+
+    font-size:
+        clamp(2rem,6vw,3.7rem);
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    line-height:1.25;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #73ffd2,
+            #66bfff,
+            #ffffff
+        );
+
+    background-size:250% auto;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+    animation:
+        gradientMove 5s
+        linear infinite;
+}
+
+.header-subtitle{
+
+    margin-top:12px;
+
+    font-size:1.15rem;
+
+    color:
+        rgba(255,255,255,.6);
+
+    letter-spacing:4px;
+}
+
+@keyframes gradientMove{
+
+    to{
+        background-position:
+            250% center;
+    }
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+    width:
+        min(950px,92%);
+
+    margin:auto;
+
+    padding-bottom:80px;
+}
+
+/* =========================================================
+   GLASS CARDS
+========================================================= */
+
+.profile,
+.bio{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:26px;
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.45),
+
+        inset 0 1px 0
+        rgba(255,255,255,.10);
+}
+
+.profile::before,
+.bio::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 25%,
+            rgba(255,255,255,.07),
+            transparent 75%
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:1s;
+
+    pointer-events:none;
+}
+
+.profile:hover::before,
+.bio:hover::before{
+
+    transform:
+        translateX(100%);
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    padding:28px;
+
+    margin-bottom:25px;
+
+    opacity:0;
+
+    transform:
+        translateX(-60px);
+
+    transition:
+        transform .8s ease,
+        opacity .8s ease,
+        box-shadow .4s;
+}
+
+.profile.active{
+
+    opacity:1;
+
+    transform:
+        translateX(0);
+}
+
+.profile:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.55),
+
+        0 0 35px
+        rgba(0,255,160,.08),
+
+        inset 0 1px 0
+        rgba(255,255,255,.15);
+}
+
+.profile-pic{
+
+    width:135px;
+    height:135px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    margin-right:25px;
+
+    border:
+        2px solid
+        rgba(0,255,160,.7);
+
+    padding:4px;
+
+    background:
+        rgba(0,255,160,.06);
+
+    box-shadow:
+        0 0 30px
+        rgba(0,255,160,.18);
+
+    transition:.5s;
+}
+
+.profile-pic:hover{
+
+    transform:
+        scale(1.06)
+        rotate(2deg);
+
+    box-shadow:
+        0 0 45px
+        rgba(0,255,160,.35);
+}
+
+.name{
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:2rem;
+
+    font-weight:900;
+
+    margin-bottom:8px;
+
+    color:#ffffff;
+}
+
+.title{
+
+    color:#72ffd0;
+
+    font-size:.95rem;
+
+    font-weight:700;
+
+    line-height:1.6;
+}
+
+/* =========================================================
+   BIO
+========================================================= */
+
+.bio{
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    opacity:0;
+
+    transform:
+        translateX(60px);
+
+    transition:
+        transform .8s ease,
+        opacity .8s ease;
+}
+
+.bio.active{
+
+    opacity:1;
+
+    transform:
+        translateX(0);
+}
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:1.65rem;
+
+    margin-bottom:25px;
+
+    color:#ffffff;
+}
+
+.section-title::before{
+
+    content:"";
+
+    width:5px;
+
+    height:28px;
+
+    flex-shrink:0;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            #00ff99,
+            #0088ff
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(0,255,160,.5);
+}
+
+/* =========================================================
+   BIO ITEMS
+========================================================= */
+
+.bio-item{
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    transition:
+        .4s;
+
+    opacity:0;
+
+    transform:
+        translateY(30px);
+
+    /* IMPORTANT */
+    height:auto;
+
+    min-height:0;
+}
+
+.bio-item.active{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+.bio-item:hover{
+
+    background:
+        rgba(255,255,255,.065);
+
+    border-color:
+        rgba(0,255,160,.25);
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.25);
+}
+
+.label{
+
+    color:#6fffd0;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:.9rem;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+}
+
+.value{
+
+    color:
+        rgba(255,255,255,.80);
+
+    line-height:1.8;
+
+    height:auto;
+
+    min-height:0;
+}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-items:flex-start;
+
+    gap:9px;
+
+    margin-top:8px;
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+}
+
+.skill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:auto;
+
+    height:auto;
+
+    min-height:34px;
+
+    padding:
+        8px 13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,255,160,.12),
+            rgba(0,120,255,.08)
+        );
+
+    color:
+        #eafff8;
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    white-space:normal;
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,.05);
+
+    transition:
+        transform .35s,
+        opacity .5s,
+        background .35s,
+        border-color .35s,
+        box-shadow .35s;
+
+    /* IMPORTANT: visible by default */
+    opacity:1;
+
+    transform:
+        scale(1);
+}
+
+.skill:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,255,160,.22),
+            rgba(0,120,255,.16)
+        );
+
+    border-color:
+        rgba(0,255,160,.4);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,255,160,.12);
+}
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+.terminal-text{
+
+    position:relative;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:
+        rgba(0,0,0,.32);
+
+    border:
+        1px solid
+        rgba(0,255,160,.12);
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    color:
+        rgba(255,255,255,.72);
+
+    line-height:1.8;
+
+    overflow:hidden;
+}
+
+.terminal-text::before{
+
+    content:"●  ●  ●";
+
+    display:block;
+
+    color:#62ffd0;
+
+    letter-spacing:5px;
+
+    font-size:11px;
+
+    margin-bottom:15px;
+}
+
+.terminal-text::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            transparent 50%,
+            rgba(0,255,150,.015) 50%
+        );
+
+    background-size:
+        100% 4px;
+
+    pointer-events:none;
+}
+
+.typing-cursor{
+
+    display:inline-block;
+
+    width:7px;
+
+    height:17px;
+
+    margin-left:4px;
+
+    background:#00ff99;
+
+    vertical-align:middle;
+
+    animation:
+        blink 1s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   SOCIAL BUTTONS
+========================================================= */
+
+.social-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    width:100%;
+}
+
+.social-btn{
+
+    min-width:170px;
+
+    padding:
+        14px 22px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    font-size:.9rem;
+
+    font-weight:800;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color:#ffffff;
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.08);
+
+    transition:.35s;
+}
+
+.social-btn:hover{
+
+    transform:
+        translateY(-6px);
+
+    background:
+        rgba(255,255,255,.08);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.35);
+}
+
+.telegram{
+    color:#38aee8;
+}
+
+.instagram{
+    color:#ff6685;
+}
+
+.youtube{
+    color:#ff5757;
+}
+
+.social-btn i{
+
+    font-size:1.1rem;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    .cursor,
+    .cursor-follower{
+        display:none;
+    }
+
+    .welcome-content{
+
+        padding:
+            40px 22px;
+
+        border-radius:24px;
+    }
+
+    .profile{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:
+            25px 18px;
+    }
+
+    .profile-pic{
+
+        width:120px;
+        height:120px;
+
+        margin-right:0;
+
+        margin-bottom:18px;
+    }
+
+    .name{
+        font-size:1.7rem;
+    }
+
+    .title{
+
+        font-size:.78rem;
+
+        line-height:1.5;
+    }
+
+    .bio{
+
+        padding:
+            20px 15px;
+
+        border-radius:24px;
+    }
+
+    .section-title{
+
+        font-size:1.45rem;
+    }
+
+    .bio-item{
+
+        padding:16px;
+
+        height:auto !important;
+
+        min-height:0 !important;
+    }
+
+    .bio-item .value{
+
+        height:auto !important;
+
+        min-height:0 !important;
+    }
+
+    .skills{
+
+        display:flex !important;
+
+        flex-wrap:wrap !important;
+
+        width:100% !important;
+
+        height:auto !important;
+
+        min-height:0 !important;
+
+        gap:7px;
+    }
+
+    .skill{
+
+        display:inline-flex !important;
+
+        opacity:1 !important;
+
+        transform:scale(1) !important;
+
+        height:auto !important;
+
+        min-height:32px;
+
+        font-size:.68rem;
+
+        padding:
+            7px 10px;
+    }
+
+    .terminal-text{
+
+        font-size:.78rem;
+
+        line-height:1.7;
+
+        padding:17px;
+    }
+
+    .social-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+    }
+
+    .social-btn{
+
+        width:100%;
+
+        min-width:0;
+    }
+
+    .header-title{
+
+        font-size:
+            2rem;
+
+        line-height:1.3;
+    }
+
+    .header-subtitle{
+
+        font-size:.85rem;
+
+        letter-spacing:2px;
+    }
+
+    .container{
+
+        width:
+            calc(100% - 28px);
+    }
+
+}
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media(max-width:400px){
+
+    .container{
+
+        width:
+            calc(100% - 20px);
+    }
+
+    .bio{
+
+        padding:16px 11px;
+    }
+
+    .bio-item{
+
+        padding:14px;
+    }
+
+    .skill{
+
+        font-size:.64rem;
+
+        padding:
+            6px 9px;
+    }
+
+    .name{
+
+        font-size:1.5rem;
+    }
+
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection{
+
+    background:
+        rgba(0,255,160,.25);
+
+    color:#ffffff;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#05070a;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:
+        linear-gradient(
+            #00ff99,
+            #0077ff
+        );
+
+    border-radius:20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND ORBS
+===================================================== -->
+
+<div class="aurora">
+
+    <div class="orb one"></div>
+
+    <div class="orb two"></div>
+
+    <div class="orb three"></div>
+
+</div>
+
+
+<!-- =====================================================
+     CURSOR
+===================================================== -->
+
+<div class="cursor"></div>
+
+<div class="cursor-follower"></div>
+
+
+<!-- =====================================================
+     WELCOME SCREEN
+===================================================== -->
+
+<div
+    class="welcome-screen"
+    id="welcomeScreen"
+>
+
+    <div class="welcome-content">
+
+        <h1 class="welcome-title">
+            𝐒𝐘𝐒𝐓𝐄𝐌 𝐀𝐂𝐂𝐄𝐒𝐒
+        </h1>
+
+        <h2 class="welcome-subtitle">
+            𝐊𝐍𝐎𝐖 𝐀𝐁𝐎𝐔𝐓 𝐌𝐄 - 𝐖𝐇𝐎 𝐌'𝐈?
+        </h2>
+
+        <p class="welcome-text">
+            Eɴᴛᴇʀ ᴍʏ ᴅɪɢɪᴛᴀʟ ᴅᴏᴍᴀɪɴ ᴛᴏ ᴇxᴘʟᴏʀᴇ
+            ᴍʏ sᴋɪʟʟs ᴀɴᴅ ᴋɴᴏᴡʟᴇᴅɢᴇ
+        </p>
+
+        <button
+            class="enter-btn"
+            id="enterBtn"
+        >
+            𝐄𝐍𝐓𝐄𝐑 𝐒𝐘𝐒𝐓𝐄𝐌
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div
+    class="main-content"
+    id="mainContent"
+>
+
+
+    <div
+        class="matrix-bg"
+        id="matrixBg"
+    ></div>
+
+
+    <div
+        class="binary-rain"
+        id="binaryRain"
+    ></div>
+
+
+    <div
+        class="particles"
+        id="particles"
+    ></div>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
+
+    <header>
+
+        <h1 class="header-title">
+
+            𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐌𝐘
+            𝐃𝐈𝐆𝐈𝐓𝐀𝐋 𝐑𝐄𝐀𝐋𝐌
+
+        </h1>
+
+        <h2 class="header-subtitle">
+            𝐖𝐇𝐎 𝐌'𝐈?
+        </h2>
+
+    </header>
+
+
+    <div class="container">
+
+
+        <!-- =============================================
+             PROFILE
+        ============================================== -->
+
+        <div class="profile">
+
+            <img
+                src="https://i.ibb.co/sdkqwgqt/IMG-20251013-011348-221.jpg"
+                alt="Misstu Profile Picture"
+                class="profile-pic"
+            >
+
+            <div class="profile-info">
+
+                <h2 class="name">
+                    Misstu Pro
+                </h2>
+
+                <p class="title">
+                    𝐄𝐓𝐇𝐈𝐂𝐀𝐋 𝐇𝐀𝐂𝐊𝐄𝐑
+                    & 𝐒𝐄𝐂𝐔𝐑𝐈𝐓𝐘 𝐑𝐄𝐒𝐄𝐀𝐑𝐂𝐇𝐄𝐑
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             ABOUT
+        ============================================== -->
+
+        <div class="bio">
+
+
+            <h3 class="section-title">
+                𝐀𝐁𝐎𝐔𝐓 𝐌𝐄
+            </h3>
+
+
+            <!-- NICKNAME -->
+
+            <div class="bio-item">
+
+                <div class="label">
+                    𝐍𝐈𝐂𝐊 𝐍𝐀𝐌𝐄
+                </div>
+
+                <div class="value">
+                    Misstu Hᴀᴄᴋᴇʀ
+                </div>
+
+            </div>
+
+
+            <!-- KNOWLEDGE -->
+
+            <div class="bio-item">
+
+                <div class="label">
+                    𝐌𝐘 𝐊𝐍𝐎𝐖𝐋𝐄𝐃𝐆𝐄
+                </div>
+
+                <div class="value">
+
+                    <div class="skills">
+
+                        <span class="skill">
+                            Eᴛʜɪᴄᴀʟ Exᴘᴇʀᴛ
+                        </span>
+
+                        <span class="skill">
+                            Cᴏᴅɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            Pʏᴛʜᴏɴ
+                        </span>
+
+                        <span class="skill">
+                            Jᴀᴠᴀsᴄʀɪᴘᴛ
+                        </span>
+
+                        <span class="skill">
+                            Hᴛᴍʟ
+                        </span>
+
+                        <span class="skill">
+                            Css
+                        </span>
+
+                        <span class="skill">
+                            C++
+                        </span>
+
+                        <span class="skill">
+                            Bᴀsʜ
+                        </span>
+
+                        <span class="skill">
+                            Nᴇᴛᴡᴏʀᴋ Sᴇᴄᴜʀɪᴛʏ
+                        </span>
+
+                        <span class="skill">
+                            Pᴇɴᴇᴛʀᴀᴛɪᴏɴ Tᴇsᴛɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            Cʀʏᴘᴛᴏɢʀᴀᴘʜʏ
+                        </span>
+
+                        <span class="skill">
+                            Rᴇᴠᴇʀsᴇ Eɴɢɪɴᴇᴇʀɪɴɢ
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="bio-item">
+
+                <div class="label">
+                    𝐌𝐘 𝐒𝐊𝐈𝐋𝐋𝐒
+                </div>
+
+                <div class="value">
+
+                    <div class="skills">
+
+                        <span class="skill">
+                            APK Mᴀᴋɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            Wᴇʙsɪᴛᴇ Mᴀᴋɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            APK Mᴏᴅᴅɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            Bᴜɢ Bᴏᴜɴᴛʏ
+                        </span>
+
+                        <span class="skill">
+                            Vᴜʟɴᴇʀᴀʙɪʟɪᴛʏ Assᴇssᴍᴇɴᴛ
+                        </span>
+
+                        <span class="skill">
+                            Dɪɢɪᴛᴀʟ Fᴏʀᴇɴsɪᴄs
+                        </span>
+
+                        <span class="skill">
+                            Mᴀʟᴡᴀʀᴇ Aɴᴀʟʏsɪs
+                        </span>
+
+                        <span class="skill">
+                            Nᴇᴛᴡᴏʀᴋ Sᴄᴀɴɴɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            Sᴏᴄɪᴀʟ Eɴɢɪɴᴇᴇʀɪɴɢ
+                        </span>
+
+                        <span class="skill">
+                            Wɪʀᴇʟᴇss Sᴇᴄᴜʀɪᴛʏ
+                        </span>
+
+                        <span class="skill">
+                            Wᴇʙ Aᴘᴘ Sᴇᴄᴜʀɪᴛʏ
+                        </span>
+
+                        <span class="skill">
+                            Mᴏʙɪʟᴇ Sᴇᴄᴜʀɪᴛʏ
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIO -->
+
+            <div class="bio-item">
+
+                <div class="label">
+                    𝐁𝐈𝐎
+                </div>
+
+                <div class="value terminal-text">
+
+                    I ᴀᴍ ᴀ ᴄʏʙᴇʀsᴇᴄᴜʀɪᴛʏ
+                    ᴇɴᴛʜᴜsɪᴀsᴛ ᴡɪᴛʜ
+                    ᴇxᴘᴇʀᴛɪsᴇ ɪɴ
+                    ᴇᴛʜɪᴄᴀʟ ʜᴀᴄᴋɪɴɢ
+                    ᴀɴᴅ ᴘᴇɴᴇᴛʀᴀᴛɪᴏɴ
+                    ᴛᴇsᴛɪɴɢ.
+
+                    <br><br>
+
+                    Mʏ ᴘᴀssɪᴏɴ ʟɪᴇs ɪɴ
+                    ғɪɴᴅɪɴɢ ᴠᴜʟɴᴇʀᴀʙɪʟɪᴛɪᴇs
+                    ᴀɴᴅ sᴇᴄᴜʀɪɴɢ sʏsᴛᴇᴍs.
+
+                    <br><br>
+
+                    I ʙᴇʟɪᴇᴠᴇ ɪɴ ᴜsɪɴɢ
+                    ᴍʏ sᴋɪʟʟs ғᴏʀ ɢᴏᴏᴅ
+                    ᴀɴᴅ ʜᴇʟᴘɪɴɢ
+                    ᴏʀɢᴀɴɪᴢᴀᴛɪᴏɴs
+                    sᴛʀᴇɴɢᴛʜᴇɴ
+                    ᴛʜᴇɪʀ sᴇᴄᴜʀɪᴛʏ
+                    ᴘᴏsᴛᴜʀᴇ.
+
+                    <br><br>
+
+                    I sᴘᴇᴄɪᴀʟɪᴢᴇ ɪɴ
+                    APK ᴍᴀᴋɪɴɢ,
+                    ᴡᴇʙsɪᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴍᴇɴᴛ,
+                    ᴀɴᴅ APK ᴍᴏᴅᴅɪɴɢ
+                    ᴀʟᴏɴɢsɪᴅᴇ
+                    ᴛʀᴀᴅɪᴛɪᴏɴᴀʟ
+                    sᴇᴄᴜʀɪᴛʏ ᴘʀᴀᴄᴛɪᴄᴇs.
+
+                    <span class="typing-cursor"></span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =============================================
+             SOCIAL BUTTONS
+        ============================================== -->
+
+        <div class="social-buttons">
+
+
+            <a
+                href="https://t.me/misstu_pro1"
+                class="social-btn telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="fab fa-telegram"></i>
+
+                𝐓𝐄𝐋𝐄𝐆𝐑𝐀𝐌
+
+            </a>
+
+
+            <a
+                href="https://www.instagram.com/misstu_pro?igsh=bGJoY2U2ZGdyNmh6"
+                class="social-btn instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="fab fa-instagram"></i>
+
+                𝐈𝐍𝐒𝐓𝐀𝐆𝐑𝐀𝐌
+
+            </a>
+
+
+            <a
+                href="https://wa.me/9779828588724"
+                class="social-btn youtube"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="fab fa-whatsapp"></i>
+
+                WHATSAPP
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     AUDIO
+===================================================== -->
+
+<audio
+    id="hackerSound"
+    preload="auto"
+>
+
+    <source
+        src="hacker.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio
+    id="clickSound"
+    preload="auto"
+>
+
+    <source
+        src="click.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<script>
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+const cursor =
+    document.querySelector(".cursor");
+
+const follower =
+    document.querySelector(".cursor-follower");
+
+
+document.addEventListener(
+    "mousemove",
+    function(e){
+
+        cursor.style.left =
+            e.clientX + "px";
+
+        cursor.style.top =
+            e.clientY + "px";
+
+        follower.style.left =
+            e.clientX + "px";
+
+        follower.style.top =
+            e.clientY + "px";
+
+    }
+);
+
+
+document.addEventListener(
+    "mousedown",
+    function(){
+
+        cursor.style.transform =
+            "translate(-50%,-50%) scale(.5)";
+
+        follower.style.transform =
+            "translate(-50%,-50%) scale(1.5)";
+
+    }
+);
+
+
+document.addEventListener(
+    "mouseup",
+    function(){
+
+        cursor.style.transform =
+            "translate(-50%,-50%) scale(1)";
+
+        follower.style.transform =
+            "translate(-50%,-50%) scale(1)";
+
+    }
+);
+
+
+/* =========================================================
+   MATRIX
+========================================================= */
+
+let matrixInterval;
+
+
+function createMatrix(){
+
+    const container =
+        document.getElementById("matrixBg");
+
+    container.innerHTML="";
+
+    const canvas =
+        document.createElement("canvas");
+
+    container.appendChild(canvas);
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+
+    const chars="01";
+
+    const fontSize=14;
+
+    let columns =
+        Math.floor(
+            canvas.width / fontSize
+        );
+
+    let drops =
+        new Array(columns)
+        .fill(1);
+
+
+    function draw(){
+
+        ctx.fillStyle =
+            "rgba(0,0,0,.055)";
+
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        ctx.fillStyle =
+            "#00ff99";
+
+        ctx.font =
+            fontSize +
+            "px monospace";
+
+
+        for(
+            let i=0;
+            i<drops.length;
+            i++
+        ){
+
+            const text =
+                chars[
+                    Math.floor(
+                        Math.random() *
+                        chars.length
+                    )
+                ];
+
+
+            ctx.fillText(
+                text,
+                i * fontSize,
+                drops[i] * fontSize
+            );
+
+
+            if(
+                drops[i] * fontSize >
+                canvas.height &&
+                Math.random() > .975
+            ){
+
+                drops[i]=0;
+
+            }
+
+
+            drops[i]++;
+
+        }
+
+    }
+
+
+    clearInterval(matrixInterval);
+
+    matrixInterval =
+        setInterval(
+            draw,
+            45
+        );
+}
+
+
+/* =========================================================
+   BINARY RAIN
+========================================================= */
+
+function createBinaryRain(){
+
+    const container =
+        document.getElementById(
+            "binaryRain"
+        );
+
+
+    setInterval(
+        function(){
+
+            const digit =
+                document.createElement(
+                    "div"
+                );
+
+
+            digit.className =
+                "binary-digit";
+
+
+            digit.textContent =
+                Math.random() > .5
+                ? "1"
+                : "0";
+
+
+            digit.style.left =
+                Math.random()*100 +
+                "%";
+
+
+            digit.style.animationDuration =
+                (
+                    Math.random()*5+3
+                ) +
+                "s";
+
+
+            container.appendChild(
+                digit
+            );
+
+
+            setTimeout(
+                function(){
+
+                    digit.remove();
+
+                },
+                8000
+            );
+
+        },
+        130
+    );
+
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+function createParticles(){
+
+    const container =
+        document.getElementById(
+            "particles"
+        );
+
+
+    setInterval(
+        function(){
+
+            const particle =
+                document.createElement(
+                    "div"
+                );
+
+
+            particle.className =
+                "particle";
+
+
+            const size =
+                Math.random()*4+2;
+
+
+            particle.style.width =
+                size+"px";
+
+
+            particle.style.height =
+                size+"px";
+
+
+            particle.style.left =
+                Math.random()*100+"%";
+
+
+            particle.style.top =
+                "100%";
+
+
+            particle.style.animationDuration =
+                (
+                    Math.random()*5+5
+                ) +
+                "s";
+
+
+            container.appendChild(
+                particle
+            );
+
+
+            setTimeout(
+                function(){
+
+                    particle.remove();
+
+                },
+                10000
+            );
+
+        },
+        250
+    );
+
+}
+
+
+/* =========================================================
+   WELCOME ANIMATION
+========================================================= */
+
+function animateWelcome(){
+
+    const title =
+        document.querySelector(
+            ".welcome-title"
+        );
+
+    const subtitle =
+        document.querySelector(
+            ".welcome-subtitle"
+        );
+
+    const text =
+        document.querySelector(
+            ".welcome-text"
+        );
+
+    const button =
+        document.querySelector(
+            ".enter-btn"
+        );
+
+
+    setTimeout(
+        function(){
+
+            title.style.transition =
+                "all 1s ease";
+
+            title.style.opacity="1";
+
+            title.style.transform =
+                "translateY(0)";
+
+        },
+        400
+    );
+
+
+    setTimeout(
+        function(){
+
+            subtitle.style.transition =
+                "all 1s ease";
+
+            subtitle.style.opacity="1";
+
+            subtitle.style.transform =
+                "translateY(0)";
+
+        },
+        800
+    );
+
+
+    setTimeout(
+        function(){
+
+            text.style.transition =
+                "all 1s ease";
+
+            text.style.opacity="1";
+
+        },
+        1200
+    );
+
+
+    setTimeout(
+        function(){
+
+            button.style.transition =
+                "all .8s ease";
+
+            button.style.opacity="1";
+
+            button.style.transform =
+                "scale(1)";
+
+        },
+        1600
+    );
+
+}
+
+
+/* =========================================================
+   CONTENT ANIMATION
+========================================================= */
+
+function startContentAnimations(){
+
+    const profile =
+        document.querySelector(
+            ".profile"
+        );
+
+    const bio =
+        document.querySelector(
+            ".bio"
+        );
+
+
+    setTimeout(
+        function(){
+
+            profile.classList.add(
+                "active"
+            );
+
+        },
+        150
+    );
+
+
+    setTimeout(
+        function(){
+
+            bio.classList.add(
+                "active"
+            );
+
+        },
+        350
+    );
+
+
+    const items =
+        document.querySelectorAll(
+            ".bio-item"
+        );
+
+
+    items.forEach(
+        function(item,index){
+
+            setTimeout(
+                function(){
+
+                    item.classList.add(
+                        "active"
+                    );
+
+                },
+                550 +
+                (index*180)
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       SKILLS
+    ===================================================== */
+
+    const skills =
+        document.querySelectorAll(
+            ".skill"
+        );
+
+
+    skills.forEach(
+        function(skill,index){
+
+            skill.style.opacity="0";
+
+            skill.style.transform =
+                "scale(.75)";
+
+
+            setTimeout(
+                function(){
+
+                    skill.style.opacity="1";
+
+                    skill.style.transform =
+                        "scale(1)";
+
+                },
+                900 +
+                (index*60)
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CLICK SOUND
+========================================================= */
+
+function setupClickSound(){
+
+    const sound =
+        document.getElementById(
+            "clickSound"
+        );
+
+
+    const elements =
+        document.querySelectorAll(
+            ".bio-item, .skill, .social-btn"
+        );
+
+
+    elements.forEach(
+        function(element){
+
+            element.addEventListener(
+                "click",
+                function(){
+
+                    sound.currentTime=0;
+
+                    sound
+                        .play()
+                        .catch(
+                            function(){}
+                        );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ENTER SYSTEM
+========================================================= */
+
+function setupEnter(){
+
+    const button =
+        document.getElementById(
+            "enterBtn"
+        );
+
+    const welcome =
+        document.getElementById(
+            "welcomeScreen"
+        );
+
+    const main =
+        document.getElementById(
+            "mainContent"
+        );
+
+    const hackerSound =
+        document.getElementById(
+            "hackerSound"
+        );
+
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            hackerSound
+                .play()
+                .catch(
+                    function(){}
+                );
+
+
+            welcome.style.opacity="0";
+
+
+            setTimeout(
+                function(){
+
+                    welcome.style.display =
+                        "none";
+
+
+                    main.style.display =
+                        "block";
+
+
+                    setTimeout(
+                        function(){
+
+                            main.style.opacity =
+                                "1";
+
+
+                            const header =
+                                document.querySelector(
+                                    "header"
+                                );
+
+
+                            header.style.transition =
+                                "all 1s ease";
+
+
+                            header.style.opacity =
+                                "1";
+
+
+                            header.style.transform =
+                                "translateY(0)";
+
+
+                            startContentAnimations();
+
+                        },
+                        100
+                    );
+
+
+                },
+                1100
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        createMatrix();
+
+        createBinaryRain();
+
+        createParticles();
+
+        animateWelcome();
+
+        setupClickSound();
+
+        setupEnter();
+
+    }
+);
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+let resizeTimer;
+
+window.addEventListener(
+    "resize",
+    function(){
+
+        clearTimeout(
+            resizeTimer
+        );
+
+
+        resizeTimer =
+            setTimeout(
+                function(){
+
+                    if(
+                        document
+                        .getElementById(
+                            "mainContent"
+                        )
+                        .style
+                        .display === "block"
+                    ){
+
+                        createMatrix();
+
+                    }
+
+                },
+                250
+            );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
